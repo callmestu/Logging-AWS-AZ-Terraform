@@ -7,41 +7,29 @@ provider "aws" {
 #create required s3 bucket to store log data
 resource "aws_s3_bucket" "log_s3" {
   bucket = "tf-cloudtrail-storage-test"
-/*
-  policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AWSCloudTrailAclCheck",
-            "Effect": "Allow",
-            "Principal": {
-              "Service": "cloudtrail.amazonaws.com"
-            },
-            "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::log_s3"
 
-        },
-        {
-            "Sid": "AWSCloudTrailWrite",
-            "Effect": "Allow",
-            "Principal": {
-              "Service": "cloudtrail.amazonaws.com"
-            },
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::log_s3/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
-            "Condition": {
-                "StringEquals": {
-                    "s3:x-amz-acl": "bucket-owner-full-control"
-                }
-            }
-        }
-    ]
+  policy = <<POLICY {
+  "Id": "Policy1633988374100",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1633988361678",
+      "Action": [
+        "s3:GetBucketAcl",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::tf-cloudtrail-storage-test/prefix/AWSLogs",
+      "Principal": {
+        "AWS": [
+          "tf-cloudtrail-storage-test"
+        ]
+      }
+    }
+  ]
 }
 POLICY
-*/
 }
-
 #create cloudtrail resource
 resource "aws_cloudtrail" "cloudtrail" {
   name                          = "TF_cloudtrail"
