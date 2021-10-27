@@ -60,19 +60,27 @@ resource "aws_cloudwatch_log_group" "cloudwatch_group" {
 
 #create trusted advisor
 
+
 #aws macie queries
+
 
 #create aws inspector
 
+
 #aws detective
+
 
 #aws security hub
 
+
 #ci/cd monitoring
+
 
 #VPC flow logs - find a way to collect them
 
+
 #aws directory services logs
+
 
 #aws IoT device defender
 
