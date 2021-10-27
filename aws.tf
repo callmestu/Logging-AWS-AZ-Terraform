@@ -10,23 +10,22 @@ resource "aws_s3_bucket" "log_s3" {
 
   policy = <<POLICY 
 {
-  "Id": "Policy1633988374100",
+  "Id": "Policy1635351885113",
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "Stmt1633988361678",
+      "Sid": "Stmt1635351871031",
       "Action": [
-        "s3:GetBucketAcl",
+        "s3:PutBucketLogging",
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": aws_s3bocket.log_s3.arn/tf-cloudtrail-storage-test/prefix/AWSLogs/*",
-      "Principal": {
-        "Service": "cloudtrail.amazonaws.com"
-      }
+      "Resource": "arn:aws:s3:::tf-cloudtrail-storage-test/${logs}",
+      "Principal": "*"
     }
   ]
 }
+
 POLICY
 }
 
