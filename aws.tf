@@ -8,7 +8,8 @@ provider "aws" {
 resource "aws_s3_bucket" "log_s3" {
   bucket = aws_s3_bucket.log_s3.id
 
-  policy = <<POLICY 
+  policy = <<POLICY
+
 {
   "Id": "Policy1635351885113",
   "Version": "2012-10-17",
@@ -20,7 +21,7 @@ resource "aws_s3_bucket" "log_s3" {
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::tf-cloudtrail-storage-test/${logs}",
+      "Resource": "arn:aws:s3:::tf-cloudtrail-storage-test/*",
       "Principal": "*"
     }
   ]
