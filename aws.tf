@@ -1,3 +1,4 @@
+#Basic/phase 1 resources
 data "aws_caller_identity" "current" {}
 
 provider "aws" {
@@ -30,8 +31,10 @@ resource "aws_s3_bucket" "log_s3" {
 POLICY
 }
 
-#create cloudtrail resource - should have log file validation enabled
-#send cloudtrail logs to s3 for file storage, send to cloudwatch to facilitate real-time and historic activity logging 
+#create cloudtrail resource for application-level logs 
+#send cloudtrail logs to s3 for file storage to facilitate real-time and historic activity logging 
+#should have log file validation enabled
+
 resource "aws_cloudtrail" "cloudtrail" {
   name                          = "TF_cloudtrail"
   s3_bucket_name                = aws_s3_bucket.log_s3.id
@@ -49,38 +52,24 @@ resource "aws_cloudwatch_log_group" "cloudwatch_group" {
   }
 }
 
+
+
+#VPC flow logs
+
+#Kinesis Data Streams for ingestion?
+
+#Kinesis Data Firehose
+
+#Services to create in later phases
 #create guarduty resources
-
-
 #create aws config resources/items
-
-
 #create aws x-ray resource - tracing recommended by aws security hub foundational best practices controls
-
-
 #create trusted advisor
-
-
 #aws macie queries
-
-
 #create aws inspector
-
-
 #aws detective
-
-
 #aws security hub
-
-
 #ci/cd monitoring
-
-
-#VPC flow logs - find a way to collect them
-
-
 #aws directory services logs
-
-
 #aws IoT device defender
 
