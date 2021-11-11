@@ -53,12 +53,14 @@ resource "aws_cloudwatch_log_group" "cloudwatch_group" {
 }
 
 
-
 #VPC flow logs
 
 #Kinesis Data Streams for ingestion?
 
 #Kinesis Data Firehose
+
+#aws directory services logs
+
 
 #Services to create in later phases
 #create guarduty resources
@@ -70,6 +72,5 @@ resource "aws_cloudwatch_log_group" "cloudwatch_group" {
 #aws detective
 #aws security hub
 #ci/cd monitoring
-#aws directory services logs
 #aws IoT device defender
 
