@@ -14,14 +14,20 @@ provider "azurerm" {
 
 # Create a resource group
 resource "azurerm_resource_group" "azurePimAwsSSO" {
-  name     = "azurePimAwsSSO"
-  location = "North America"
+  name     = "azurePimAwsSSO" #"${var.prefix}-resources"
+  location = "North America"  #var.location
 }
 
 # Create a virtual network within the resource group
 resource "azurerm_virtual_network" "PIM_VPC" {
   name                = "PIM_VPC"
-  resource_group_name = azurerm_resource_group.PIM_VPC.name
-  location            = azurerm_resource_group.PIM_VPC.location
+  resource_group_name = azurerm_resource_group.azurePimAwsSSO.name
+  location            = azurerm_resource_group.azurePimAwsSSO.location
   address_space       = ["10.0.0.0/16"]
+}
+resource "azurerm_log_analytics_workspace" "logAnalytics" {
+  name                = "${var.prefix}-laworkspace"
+  location            = azurerm_resource_group.azurePimAwsSSO.location
+  resource_group_name = azurerm_resource_group.azurePimAwsSSO.name
+  sku                 = "PerGB2018"
 }
