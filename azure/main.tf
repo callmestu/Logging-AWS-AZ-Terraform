@@ -15,7 +15,7 @@ provider "azurerm" {
 # Create a resource group
 resource "azurerm_resource_group" "azurePimAwsSSO" {
   name     = "azurePimAwsSSO" #"${var.prefix}-resources"
-  location = "North America"  #var.location
+  location = "eastus" #var.location
 }
 
 # Create a virtual network within the resource group
