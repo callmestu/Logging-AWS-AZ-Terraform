@@ -1,0 +1,22 @@
+#Basic/phase 1 resources
+  #create required s3 bucket to store log data
+  #create cloudtrail resource for application-level logs 
+  #send cloudtrail logs to s3 for file storage to facilitate real-time and historic activity logging 
+  #should have log file validation enabled
+  #create cloudwatch resource
+  #VPC flow logs
+  #Kinesis Data Streams for ingestion?
+  #Kinesis Data Firehose
+  #aws directory services logs
+
+#Services to create in later phases
+  #create guarduty resources
+  #create aws config resources/items
+  #create aws x-ray resource - tracing recommended by aws security hub foundational best practices controls
+  #create trusted advisor
+  #aws macie queries
+  #create aws inspector
+  #aws detective
+  #aws security hub
+  #ci/cd monitoring
+  #aws IoT device defender

@@ -53,6 +53,6 @@ resource "azurerm_automation_runbook" "var.runbook_name" {
   runbook_type            = "PowerShellWorkflow"
 
   publish_content_link {
-    uri = "https://raw.githubusercontent.com/callmestu/Logging-AWS-AZ-Terraform/main/azure/aad_sync.ps1"
+    uri = "https://raw.githubusercontent.com/callmestu/Logging-AWS-AZ-Terraform/main/azure/aad_sync.ps1     "
   }
 }
