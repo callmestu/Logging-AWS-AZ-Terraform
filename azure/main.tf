@@ -33,17 +33,17 @@ resource "azurerm_log_analytics_workspace" "logAnalytics" {
 }
 resource "azurerm_automation_account" "automation_account" {
   name                = "var.automation_account_name"
-  location            = azurerm_resource_group.PIM_VPC.location
-  resource_group_name = azurerm_resource_group.PIM_VPC.name
+  location            = azurerm_resource_group.azurePimAwsSSO.location
+  resource_group_name = azurerm_resource_group.azurePimAwsSSO.name
 
   sku_name = "Basic"
 
   tags = {
-    environment = "development"
+    environment = "var.environment"
   }
 }
-resource "azurerm_automation_runbook" "var.runbook_name" {
-  name                    = "Get-AzureVMTutorial"
+resource "azurerm_automation_runbook" "runbook" {
+  name                    = "var.runbook_name"
   location                = azurerm_resource_group.azurePimAwsSSO.location
   resource_group_name     = azurerm_resource_group.azurePimAwsSSO.name
   automation_account_name = azurerm_automation_account.automation_account.name
@@ -53,6 +53,6 @@ resource "azurerm_automation_runbook" "var.runbook_name" {
   runbook_type            = "PowerShellWorkflow"
 
   publish_content_link {
-    uri = "https://raw.githubusercontent.com/callmestu/Logging-AWS-AZ-Terraform/main/azure/aad_sync.ps1     "
+    uri = "https://raw.githubusercontent.com/callmestu/Logging-AWS-AZ-Terraform/main/azure/aad_sync.ps1"
   }
 }

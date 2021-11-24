@@ -8,7 +8,7 @@ variable "prefix" {
   description = "This will be the begining of the names used in the resources and instances"
   default     = "dev-logInfra"
 }
-variable "logAnalyticsName" {
+variable "logAnalytics_name" {
   type = string
   description = "This will be used in the Log Analytics AKA Azure Monitor resource name"
   default = "aadLogAnalytics"
@@ -38,4 +38,9 @@ variable "instance_size" {
   type = string
   description = "This will determine the VM machine size used in a particular environment"
   default = "Standard_DS1_v2"
+}
+variable "environment" {
+  type = string
+  description = "This will determine type of environment (prd, dev, tst, stg) created"
+  default = "dev"
 }
