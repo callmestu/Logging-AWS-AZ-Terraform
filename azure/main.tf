@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = "=2.42.0"
     }
   }
 }
@@ -15,7 +15,7 @@ provider "azurerm" {
 # Create a resource group
 resource "azurerm_resource_group" "azurePimAwsSSO" {
   name     = "azurePimAwsSSO" #"${var.prefix}-resources"
-  location = "eastus" #var.location
+  location = "eastus"         #var.location
 }
 
 # Create a virtual network within the resource group
@@ -31,8 +31,8 @@ resource "azurerm_log_analytics_workspace" "logAnalytics" {
   resource_group_name = azurerm_resource_group.azurePimAwsSSO.name
   sku                 = "PerGB2018"
 }
-resource "azurerm_automation_account" "automation_account" {
-  name                = "var.automation_account_name"
+resource "azurerm_automation_account" "automationAccount" {
+  name                = var.automation_account_name
   location            = azurerm_resource_group.azurePimAwsSSO.location
   resource_group_name = azurerm_resource_group.azurePimAwsSSO.name
 
@@ -43,10 +43,10 @@ resource "azurerm_automation_account" "automation_account" {
   }
 }
 resource "azurerm_automation_runbook" "runbook" {
-  name                    = "var.runbook_name"
+  name                    = var.runbook_name
   location                = azurerm_resource_group.azurePimAwsSSO.location
   resource_group_name     = azurerm_resource_group.azurePimAwsSSO.name
-  automation_account_name = azurerm_automation_account.automation_account.name
+  automation_account_name = azurerm_automation_account.automationAccount.name
   log_verbose             = "true"
   log_progress            = "true"
   description             = "Powershell sync script with secrets as variables"
