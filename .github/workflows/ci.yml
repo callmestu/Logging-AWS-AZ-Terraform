@@ -1,0 +1,21 @@
+---
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: Ubuntu-20.04
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - uses: seisollc/easy_infra@make_github_action
+        with:
+          command: 'terraform init'
