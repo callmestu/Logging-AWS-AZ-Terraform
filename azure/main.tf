@@ -56,3 +56,30 @@ resource "azurerm_automation_runbook" "runbook" {
     uri = "https://raw.githubusercontent.com/callmestu/Logging-AWS-AZ-Terraform/main/azure/aad_sync.ps1"
   }
 }
+
+resource "azurerm_log_analytics_solution" "LogAnSolution" {
+  solution_name         = "ContainerInsights"
+  location              = azurerm_resource_group.azurePimAwsSSO.location
+  resource_group_name   = azurerm_resource_group.azurePimAwsSSO.name
+  workspace_resource_id = azurerm_log_analytics_workspace.logAnalytics.id
+  workspace_name        = azurerm_log_analytics_workspace.logAnalytics.name
+
+  plan {
+    publisher = "Microsoft"
+    product   = "OMSGallery/ContainerInsights"
+  }
+}
+
+#need vars updated below
+resource "azurerm_logic_app_workflow" "example" {
+  name                = "${var.prefix}-logicapp"
+  location            = "${azurerm_resource_group.example.location}"
+  resource_group_name = "${azurerm_resource_group.example.name}"
+}
+
+resource "azurerm_logic_app_trigger_recurrence" "hourly" {
+  name         = "run-every-hour"
+  logic_app_id = "${azurerm_logic_app_workflow.example.id}"
+  frequency    = "Hour"
+  interval     = 1
+}
