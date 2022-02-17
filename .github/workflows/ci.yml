@@ -17,5 +17,3 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v2
       - uses: seisollc/easy_infra@make_github_action
-        with:
-          command: 'terraform init'
