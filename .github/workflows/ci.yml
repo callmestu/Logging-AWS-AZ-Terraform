@@ -27,7 +27,4 @@ jobs:
           pipenv install --dev
       - uses: seisollc/easy_infra@make_github_action
         with:
-          command: "docker run -v $(pwd):/iac seiso/easy_infra:latest terraform validate"
-
-
-        run: |
+          command: terraform validate
