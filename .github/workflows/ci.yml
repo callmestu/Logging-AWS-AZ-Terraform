@@ -4,6 +4,7 @@ name: CI
 on:
   push:
     branches:
+      - feature/ci
       - main
   pull_request:
     branches:
