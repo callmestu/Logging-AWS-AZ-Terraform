@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.9"
       - name: Install the dependencies
-        runs: |
+        run: |
           groups $USER
           ls -la
           python -m pip install --upgrade pipenv
