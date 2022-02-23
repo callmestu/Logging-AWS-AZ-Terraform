@@ -28,4 +28,4 @@ jobs:
           pipenv install --dev
       - uses: seisollc/easy_infra@make_github_action
         with:
-          command: terraform validate
+          command: terraform init
