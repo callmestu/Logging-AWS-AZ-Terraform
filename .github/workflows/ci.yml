@@ -21,12 +21,12 @@ jobs:
         with:
           python-version: "3.9"
       - name: Install the dependencies
-        run: |
+        runs: |
           groups $USER
           ls -la
           python -m pip install --upgrade pipenv
           pipenv install --dev
-      - uses: seisollc/easy_infra@make_github_action
+        using: seisollc/easy_infra@make_github_action
         args:
           - terraform
           - init
